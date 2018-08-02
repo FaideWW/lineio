@@ -1,0 +1,13 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint-microsoft-contrib",
+        "tslint-immutable"
+    ],
+    "jsRules": {},
+    "rules": {
+      "no-import-side-effect": [true, {"ignore-module": "(\\.html|\\.css)$"}],
+      "no-relative-imports": [false]
+    },
+    "rulesDirectory": []
+}
