@@ -1,13 +1,7 @@
-import './style.css';
 /**
  * Set up game state
  */
-function initGame(canvasEl : HTMLElement) : void {
-  console.log('Initializing...');
-  canvasEl.width = document.body.clientWidth;
-  canvasEl.height = document.body.clientHeight;
-  const canvasW : number = canvasEl.width;
-  const canvash : number = canvasEl.height;
-}
+import { Game } from './Game.ts';
+import './style.css';
 
-initGame(document.getElementById('game'));
+const game: Game = new Game('.canvas');
