@@ -22,6 +22,9 @@ module.exports = {
       chunks: 'all',
     },
   },
+  resolve: {
+    extensions: ['.js', '.ts', '.d.ts'],
+  },
   module: {
     rules: [
       {
@@ -45,11 +48,11 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-              experimentalWatchApi: true,
-            },
+            loader: 'awesome-typescript-loader',
+            // options: {
+            //   transpileOnly: true,
+            //   experimentalWatchApi: true,
+            // },
           },
         ],
         exclude: /node_modules/,

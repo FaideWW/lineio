@@ -1,8 +1,9 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint-microsoft-contrib",
-        "tslint-immutable"
+      "tslint:recommended",
+      "tslint-microsoft-contrib",
+      "tslint-immutable"
     ],
     "jsRules": {},
     "rules": {

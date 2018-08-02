@@ -5,13 +5,13 @@
  */
 export class Canvas {
   private canvasEl: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext;
+  private ctx: CanvasRenderingContext2D;
   private width: number;
   private height: number;
 
   constructor(canvasSelector: string, width: number, height: number) {
-    this.canvasEl = <HTMLCanvasElement> document.querySelector(canvasSelector);
-    if (!this.canvasEl) {
+    this.canvasEl = document.querySelector(canvasSelector);
+    if (this.canvasEl === null) {
       throw new Error('No canvas element found');
     }
     this.ctx = this.canvasEl.getContext('2d');
@@ -19,7 +19,7 @@ export class Canvas {
     this.clearCanvas();
   }
 
-  public getCtx(): CanvasRenderingContext {
+  public getCtx(): CanvasRenderingContext2D {
     return this.ctx;
   }
 
