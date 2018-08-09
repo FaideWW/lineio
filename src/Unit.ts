@@ -1,4 +1,4 @@
-import { UnitData } from './dataTypes';
+import { UnitState } from './dataTypes';
 /**
  * Unit.ts
  *
@@ -10,11 +10,11 @@ export class Unit {
   private y: number;
   private health: number;
 
-  public static FROM(data: UnitData): Unit {
+  public static FROM(state: UnitState): Unit {
     const u: Unit = new Unit();
-    u.x = data.x;
-    u.y = data.y;
-    u.health = data.health;
+    u.x = state.x;
+    u.y = state.y;
+    u.health = state.health;
 
     return u;
   }

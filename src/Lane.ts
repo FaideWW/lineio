@@ -3,7 +3,7 @@
  *
  */
 import { Canvas } from './Canvas';
-import { LaneData, TowerData, UnitData } from './dataTypes';
+import { LaneState, TowerState, UnitState } from './dataTypes';
 import { Tower } from './Tower';
 import { Unit } from './Unit';
 
@@ -18,12 +18,12 @@ export class Lane {
   private units: Unit[];
   private towers: Tower[];
 
-  public static FROM(data: LaneData): Lane {
+  public static FROM(state: LaneState): Lane {
     const l: Lane = new Lane();
-    l.width = data.width;
-    l.height = data.height;
-    l.units = data.units.map((unitData: UnitData) => Unit.FROM(unitData));
-    l.towers = data.towers.map((towerData: TowerData) => Tower.FROM(towerData));
+    l.width = state.width;
+    l.height = state.height;
+    l.units = state.units.map((unitState: UnitState) => Unit.FROM(unitState));
+    l.towers = state.towers.map((towerState: TowerState) => Tower.FROM(towerState));
 
     return l;
   }

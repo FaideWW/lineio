@@ -28,7 +28,7 @@ export class Canvas {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  private resizeCanvas(width: number, height: number) : void {
+  private resizeCanvas(width: number, height: number): void {
     this.canvasEl.width = this.width = width;
     this.canvasEl.height = this.height = height;
   }
