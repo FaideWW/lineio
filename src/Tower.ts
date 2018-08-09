@@ -1,4 +1,4 @@
-import { TowerData } from './dataTypes';
+import { TowerState } from './dataTypes';
 /**
  * Tower.ts
  *
@@ -10,11 +10,11 @@ export class Tower {
   private y: number;
   private health: number;
 
-  public static FROM(data: TowerData): Tower {
+  public static FROM(state: TowerState): Tower {
     const t: Tower = new Tower();
-    t.x = data.x;
-    t.y = data.y;
-    t.health = data.health;
+    t.x = state.x;
+    t.y = state.y;
+    t.health = state.health;
 
     return t;
   }

@@ -1,25 +1,45 @@
 /**
- * Data import types
+ * State import types
  */
-export type UnitData = {
+export type UnitState = {
   x: number;
   y: number;
   health: number;
 };
 
-export type TowerData = {
+export type TowerState = {
   x: number;
   y: number;
   health: number;
 };
 
-export type LaneData = {
+export type LaneState = {
   width: number;
   height: number;
-  units: UnitData[];
-  towers: TowerData[];
+  units: UnitState[];
+  towers: TowerState[];
 };
 
-export type GameData = {
-  lanes: LaneData[];
+export type GameState = {
+  lanes: LaneState[];
 };
+
+export type GameSettings = {
+  canvasSelector?: string;
+  timerSelector?: string;
+  frametimeSelector?: string;
+  framesPerSecond?: number;
+  physicsUpdatesPerSecond?: number;
+  logicUpdatesPerSecond?: number;
+};
+
+/**
+ * Augment the window
+ */
+
+declare global {
+  interface IGameWindow extends Window {
+    startGame(): void;
+    stopGame(): void;
+  }
+}

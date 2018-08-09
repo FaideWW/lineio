@@ -9,7 +9,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'line.io',
       template: 'templates/game.html',
     }),
   ],
