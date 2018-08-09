@@ -1,28 +1,29 @@
 /**
  * State import types
  */
-export type UnitState = {
+export interface IUnitState {
   x: number;
   y: number;
   health: number;
-};
+  color: string;
+}
 
-export type TowerState = {
+export interface ITowerState {
   x: number;
   y: number;
   health: number;
-};
+}
 
-export type LaneState = {
+export interface ILaneState {
   width: number;
   height: number;
-  units: UnitState[];
-  towers: TowerState[];
-};
+  units: IUnitState[];
+  towers: ITowerState[];
+}
 
-export type GameState = {
-  lanes: LaneState[];
-};
+export interface IGameState {
+  lanes: ILaneState[];
+}
 
 export type GameSettings = {
   canvasSelector?: string;
@@ -31,6 +32,7 @@ export type GameSettings = {
   framesPerSecond?: number;
   physicsUpdatesPerSecond?: number;
   logicUpdatesPerSecond?: number;
+  tileSize?: number;
 };
 
 /**

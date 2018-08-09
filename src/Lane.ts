@@ -3,7 +3,7 @@
  *
  */
 import { Canvas } from './Canvas';
-import { LaneState, TowerState, UnitState } from './dataTypes';
+import { ILaneState, ITowerState, IUnitState } from './dataTypes';
 import { Tower } from './Tower';
 import { Unit } from './Unit';
 
@@ -12,18 +12,18 @@ import { Unit } from './Unit';
  *
  * Holds data and logic for managing Lanes
  */
-export class Lane {
-  private width: number;
-  private height: number;
-  private units: Unit[];
-  private towers: Tower[];
+export class Lane implements ILaneState {
+  public width: number;
+  public height: number;
+  public units: Unit[];
+  public towers: Tower[];
 
-  public static FROM(state: LaneState): Lane {
+  public static FROM(state: ILaneState): Lane {
     const l: Lane = new Lane();
     l.width = state.width;
     l.height = state.height;
-    l.units = state.units.map((unitState: UnitState) => Unit.FROM(unitState));
-    l.towers = state.towers.map((towerState: TowerState) => Tower.FROM(towerState));
+    l.units = state.units.map((unitState: IUnitState) => Unit.FROM(unitState));
+    l.towers = state.towers.map((towerState: ITowerState) => Tower.FROM(towerState));
 
     return l;
   }
