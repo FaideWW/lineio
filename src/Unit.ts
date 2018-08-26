@@ -1,4 +1,5 @@
-import { IUnitState } from './dataTypes';
+import { IUnitState, IVector } from './dataTypes';
+import { Vector } from './Vector';
 /**
  * Unit.ts
  *
@@ -6,18 +7,24 @@ import { IUnitState } from './dataTypes';
  */
 
 export class Unit implements IUnitState {
-  public x: number;
-  public y: number;
+  public position: IVector;
   public health: number;
+  public speed: number;
+  public heading: IVector;
   public color: string;
 
   public static FROM(state: IUnitState): Unit {
     const u: Unit = new Unit();
-    u.x = state.x;
-    u.y = state.y;
+    u.position = new Vector(state.position.x, state.position.y);
     u.health = state.health;
+    u.speed = state.speed;
+    u.heading = state.heading;
     u.color = state.color;
 
     return u;
+  }
+
+  public getTilePosition(): IVector {
+    return new Vector(Math.round(this.position.x), Math.round(this.position.y));
   }
 }

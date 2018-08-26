@@ -3,15 +3,27 @@
     {
       "width": 20,
       "height": 60,
+      "origin": { "x": 10, "y": 0 },
+      "destination": { "x": 10, "y": 59 },
       "units": [
         {
-          "x": 9,
-          "y": 0,
+          "position": {
+            "x": 9,
+            "y": 0
+          },
           "health": 50,
+          "speed": 2,
           "color": "red"
         }
       ],
-      "towers": []
+      "towers": [
+        { "position": { "x": 7, "y": 30 }, "health": 10, "color": "blue" },
+        { "position": { "x": 8, "y": 30 }, "health": 10, "color": "blue" },
+        { "position": { "x": 9, "y": 30 }, "health": 10, "color": "blue" },
+        { "position": { "x": 10, "y": 30 }, "health": 10, "color": "blue" },
+        { "position": { "x": 11, "y": 30 }, "health": 10, "color": "blue" },
+        { "position": { "x": 12, "y": 30 }, "health": 10, "color": "blue" }
+      ]
     }
   ]
 }

@@ -5,6 +5,8 @@
 import { Canvas } from './Canvas';
 import { GameSettings, IGameState, ILaneState } from './dataTypes';
 import { Lane } from './Lane';
+import { LogicUpdater } from './systems/LogicUpdater';
+import { PhysicsUpdater } from './systems/PhysicsUpdater';
 import { Renderer } from './systems/Renderer';
 
 const DEFAULT_SETTINGS: GameSettings = {
@@ -32,6 +34,8 @@ export class Game implements IGameState {
   private frametimeDiv: HTMLElement;
 
   // Systems
+  private logicUpdater: LogicUpdater;
+  private physicsUpdater: PhysicsUpdater;
   private renderer: Renderer;
 
   // Game Loop
@@ -60,6 +64,8 @@ export class Game implements IGameState {
     this.frametimeDiv = document.querySelector(frametimeSelector);
 
     // Configure systems
+    this.logicUpdater = new LogicUpdater();
+    this.physicsUpdater = new PhysicsUpdater();
     this.renderer = new Renderer({ tileSize });
 
     this.minRenderTime = Math.ceil(1000 / framesPerSecond);
@@ -78,7 +84,10 @@ export class Game implements IGameState {
   }
 
   public exportState(): IGameState {
-    return this;
+    // TODO: Implement caching here
+    return {
+      lanes: this.lanes
+    };
   }
 
   public start = (): void => {
@@ -103,10 +112,13 @@ export class Game implements IGameState {
   }
 
   public update = (timestamp: number): void  => {
+    const delta: number = timestamp - this.lastTick;
     this.timerDiv.innerText = `${timestamp - this.startTime}`;
-    this.frametimeDiv.innerText = `${timestamp - this.lastTick}`;
+    this.frametimeDiv.innerText = `${delta}`;
     // Do actor logic
+    this.logicUpdater.updateLogic(this.exportState());
     // Update physics
+    this.physicsUpdater.updatePhysics(this.exportState(), delta);
     // Rerender
     this.renderer.render(this.canvas, this.exportState());
 

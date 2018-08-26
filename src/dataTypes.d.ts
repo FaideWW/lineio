@@ -1,22 +1,30 @@
 /**
  * State import types
  */
-export interface IUnitState {
+export interface IVector {
   x: number;
   y: number;
+}
+
+export interface IUnitState {
+  position: IVector;
   health: number;
+  speed: number;
+  heading: IVector;
   color: string;
 }
 
 export interface ITowerState {
-  x: number;
-  y: number;
+  position: IVector;
   health: number;
+  color: string;
 }
 
 export interface ILaneState {
   width: number;
   height: number;
+  origin: IVector;
+  destination: IVector;
   units: IUnitState[];
   towers: ITowerState[];
 }

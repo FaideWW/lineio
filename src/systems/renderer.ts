@@ -1,5 +1,5 @@
 /**
- * systems/Renderer.ts
+ * systems/renderer.ts
  *
  * handles taking a game state and rendering it to a canvas context
  */
@@ -32,13 +32,13 @@ export class Renderer {
     // Draw Units
     lane.units.forEach((unit: IUnitState) => {
       ctx.fillStyle = unit.color;
-      ctx.fillRect(unit.x * this.tileSize, unit.y * this.tileSize, this.tileSize, this.tileSize);
+      ctx.fillRect(unit.position.x * this.tileSize, unit.position.y * this.tileSize, this.tileSize, this.tileSize);
     });
 
     // Draw Towers
-    // lane.towers.forEach((tower: ITowerState) => {
-    //   ctx.fillStyle = tower.color;
-    //   ctx.fillRect(tower.x * this.tileSize, tower.y * this.tileSize, this.tileSize, this.tileSize);
-    // });
+    lane.towers.forEach((tower: ITowerState) => {
+      ctx.fillStyle = tower.color;
+      ctx.fillRect(tower.position.x * this.tileSize, tower.position.y * this.tileSize, this.tileSize, this.tileSize);
+    });
   }
 }
