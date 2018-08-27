@@ -23,6 +23,10 @@ export class Canvas {
     return this.ctx;
   }
 
+  public getEl(): HTMLCanvasElement {
+    return this.canvasEl;
+  }
+
   public clearCanvas() : void {
     this.ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     this.ctx.fillRect(0, 0, this.width, this.height);

@@ -3,8 +3,14 @@
  *
  */
 import { Canvas } from './Canvas';
-import { GameSettings, IGameState, ILaneState } from './dataTypes';
+import {
+  GameSettings,
+  IGameState,
+  IInputState,
+  ILaneState
+} from './dataTypes';
 import { Lane } from './Lane';
+import { InputUpdater } from './systems/InputUpdater';
 import { LogicUpdater } from './systems/LogicUpdater';
 import { PhysicsUpdater } from './systems/PhysicsUpdater';
 import { Renderer } from './systems/Renderer';
@@ -27,6 +33,7 @@ const DEFAULT_SETTINGS: GameSettings = {
 export class Game implements IGameState {
   // Game State
   public lanes: Lane[];
+  public input: IInputState;
 
   // DOM hooks and rendering settings
   private canvas: Canvas;
@@ -34,6 +41,7 @@ export class Game implements IGameState {
   private frametimeDiv: HTMLElement;
 
   // Systems
+  private inputUpdater: InputUpdater;
   private logicUpdater: LogicUpdater;
   private physicsUpdater: PhysicsUpdater;
   private renderer: Renderer;
@@ -64,6 +72,7 @@ export class Game implements IGameState {
     this.frametimeDiv = document.querySelector(frametimeSelector);
 
     // Configure systems
+    this.inputUpdater  = new InputUpdater();
     this.logicUpdater = new LogicUpdater();
     this.physicsUpdater = new PhysicsUpdater();
     this.renderer = new Renderer({ tileSize });
@@ -86,7 +95,8 @@ export class Game implements IGameState {
   public exportState(): IGameState {
     // TODO: Implement caching here
     return {
-      lanes: this.lanes
+      lanes: this.lanes,
+      input: this.input
     };
   }
 
@@ -115,6 +125,8 @@ export class Game implements IGameState {
     const delta: number = timestamp - this.lastTick;
     this.timerDiv.innerText = `${timestamp - this.startTime}`;
     this.frametimeDiv.innerText = `${delta}`;
+    // Process user input
+    this.inputUpdater.updateInput(this.exportState());
     // Do actor logic
     this.logicUpdater.updateLogic(this.exportState());
     // Update physics
@@ -127,5 +139,9 @@ export class Game implements IGameState {
     if (this.running) {
       this.animationFrameRequestId = window.requestAnimationFrame(this.update);
     }
+  }
+
+  private bindEventListeners() {
+    const el = this.canvas.getEl();
   }
 }

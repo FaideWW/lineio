@@ -6,6 +6,13 @@ export interface IVector {
   y: number;
 }
 
+export interface IInputState {
+  mouse: IVector;
+  mouseLeft: boolean;
+  mouseRight: boolean;
+  keys: { [keyId: string]: boolean };
+}
+
 export interface IUnitState {
   position: IVector;
   health: number;
@@ -31,6 +38,7 @@ export interface ILaneState {
 
 export interface IGameState {
   lanes: ILaneState[];
+  input: IInputState;
 }
 
 export type GameSettings = {
